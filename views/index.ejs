@@ -2,19 +2,23 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Catálogo de Productos</title>
+  <title>Registro de Usuarios</title>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <h1>📦 Catálogo de Productos</h1>
-  <div class="productos">
-    <% productos.forEach(p => { %>
+  <% if (locals.query && query.status === 'registered') { %>
+    <div class="message success">
+      ¡Usuario registrado exitosamente!
+    </div>
+  <% } %>
+  <h1>👥 Usuarios Registrados</h1>
+  <a href="/registrar" class="btn-registrar">Registrar Nuevo Usuario</a>
+  <div class="usuarios">
+    <% usuarios.forEach(usuario => { %>
       <div class="card">
-        <img src="<%= p.imagen_url %>" alt="<%= p.nombre %>" width="200">
-        <h2><%= p.nombre %></h2>
-        <p><%= p.descripcion %></p>
-        <p><strong>Precio:</strong> $<%= p.precio %></p>
-        <p><strong>Stock:</strong> <%= p.stock %></p>
+        <img src="<%= usuario.foto_url ? usuario.foto_url : 'https://via.placeholder.com/150' %>" alt="Foto de <%= usuario.nombre %>" width="150">
+        <h2><%= usuario.nombre %></h2>
+        <p><%= usuario.email %></p>
       </div>
     <% }) %>
   </div>

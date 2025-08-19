@@ -21,11 +21,16 @@ const upload = multer({ storage: storage });
 router.get('/', async (req, res) => {
   try {
     const result = await pool.query('SELECT id, nombre, email, foto_url FROM usuarios ORDER BY fecha_registro DESC');
-    res.render('index', { usuarios: result.rows });
+    res.render('index', { usuarios: result.rows, query: req.query });
   } catch (err) {
     console.error(err);
     res.status(500).send('Error al obtener los usuarios');
   }
+});
+
+// Ruta para mostrar el formulario de registro
+router.get('/registrar', (req, res) => {
+  res.render('registrar', { query: req.query });
 });
 
 // Ruta para procesar el registro de un nuevo usuario
