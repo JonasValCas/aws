@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo de Productos</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>📦 Catálogo de Productos</h1>
+  <div class="productos">
+    <% productos.forEach(p => { %>
+      <div class="card">
+        <img src="<%= p.imagen_url %>" alt="<%= p.nombre %>" width="200">
+        <h2><%= p.nombre %></h2>
+        <p><%= p.descripcion %></p>
+        <p><strong>Precio:</strong> $<%= p.precio %></p>
+        <p><strong>Stock:</strong> <%= p.stock %></p>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
